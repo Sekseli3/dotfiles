@@ -263,6 +263,97 @@
                         ]
                     },
                     {
+                      "description": "RIGHT layer: F23+ä → non_us_pound (')  |  F23+Shift+ä → Shift+non_us_pound (*)",
+                      "manipulators": [
+                        {
+                          "type": "basic",
+                          "conditions": [
+                            { "type": "variable_if", "name": "layer_right", "value": 1 }
+                          ],
+                          "from": {
+                            "key_code": "quote",
+                            "modifiers": { "optional": ["any"] }
+                          },
+                          "to": [
+                            { "key_code": "non_us_pound" }
+                          ]
+                        },
+                        {
+                          "type": "basic",
+                          "conditions": [
+                            { "type": "variable_if", "name": "layer_right", "value": 1 }
+                          ],
+                          "from": {
+                            "key_code": "quote",
+                            "modifiers": {
+                              "mandatory": ["shift"],
+                              "optional": ["any"]
+                            }
+                          },
+                          "to": [
+                            { "key_code": "non_us_pound", "modifiers": ["shift"] }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                        "description": "RIGHT layer: F23+ä → '   |   F23+Shift+ä → * (Finnish layout, no insert_text)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_right",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "quote"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_right",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "quote",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Make the dagger (†) key combo type tilde (~) on Finnish layout",
                         "manipulators": [
                             {
@@ -298,32 +389,91 @@
                         ]
                     },
                     {
-  "description": "LEFT layer (Corne only): Shift+W → \" (Finnish layout)",
-  "manipulators": [
-    {
-      "type": "basic",
-      "conditions": [
-        { "type": "variable_if", "name": "layer_left", "value": 1 },
-        {
-          "type": "device_if",
-          "identifiers": [{ "vendor_id": 18003, "product_id": 1 }]
-        }
-      ],
-      "from": {
-        "key_code": "w",
-        "modifiers": {
-          "mandatory": ["shift"],
-          "optional": ["any"]
-        }
-      },
-      "to": [
-        { "key_code": "2", "modifiers": ["shift"] }
-      ]
-    }
-  ]
-},
-
-
+                        "description": "LEFT layer (Corne only): Shift+W → \" (Finnish layout)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_left",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1,
+                                                "vendor_id": 18003
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "w",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "2",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "LEFT layer (Corne only): Shift+Y → * (asterisk)",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_left",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    },
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 1,
+                                                "vendor_id": 18003
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "y",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "backslash",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
                     {
                         "description": "Corne layers: hold F24 = LEFT layer, hold F23 = RIGHT layer",
                         "manipulators": [
@@ -656,6 +806,127 @@
                                 "to": [
                                     {
                                         "key_code": "right_arrow"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "LEFT layer: HJKL arrows with Shift support for window management",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_left",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "h",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_left",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "j",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "down_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_left",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "k",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "up_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "name": "layer_left",
+                                        "type": "variable_if",
+                                        "value": 1
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "l",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "shift"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_arrow",
+                                        "modifiers": [
+                                            "shift"
+                                        ]
                                     }
                                 ],
                                 "type": "basic"
@@ -1446,10 +1717,6 @@
                             }
                         ]
                     }
-                    
-
-
-                    
                 ]
             },
             "devices": [
